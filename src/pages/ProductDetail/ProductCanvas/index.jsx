@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import Experience from './threejs/Experience/Experience';
 
 const ProductCanvasContainer = styled.canvas`
   position: fixed;
@@ -11,13 +12,11 @@ const ProductCanvasContainer = styled.canvas`
 
 export default function ProductCanvas() {
   const canvasElement = useRef(null);
+  const [experience, setExperience] = useState(null);
 
   useEffect(() => {
-    console.log(
-      '🚀 ~ file: index.jsx ~ line 14 ~ ProductCanvas ~ canvasElement',
-      canvasElement
-    );
-  });
+    setExperience(new Experience(canvasElement.current));
+  }, []);
 
   return <ProductCanvasContainer ref={canvasElement} />;
 }
