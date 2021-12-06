@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Experience from '../../../Experience';
-import vertexShader from './vertex.glsl';
-import fragmentShader from './fragment.glsl';
+// import vertexShader from './vertex.glsl';
+// import fragmentShader from './fragment.glsl';
 import Time from '../../../Utils/Time';
 
 export default class Dust {
@@ -60,8 +60,47 @@ export default class Dust {
       depthWrite: false,
       blending: THREE.AdditiveBlending,
       vertexColors: true,
-      vertexShader,
-      fragmentShader,
+      vertexShader: `
+        uniform float uSize;
+        uniform float uTime;
+        
+        attribute float aScale;
+        
+        void main()
+        {
+          /**
+            * Position
+            */
+          vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+          float distanceToCenter = length(modelPosition.xyz);
+          modelPosition.x +=  5.0 * sin(uTime * 0.0005 + distanceToCenter);
+        
+          vec4 viewPosition = viewMatrix * modelPosition;
+          vec4 projectedPosition = projectionMatrix * viewPosition;
+          gl_Position = projectedPosition;
+        
+          /**
+            * Size
+            */
+          gl_PointSize = uSize * aScale;
+          gl_PointSize *= (1.0 / - viewPosition.z);
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+
+        void main()
+        {
+          // Light point
+          float strength = distance(gl_PointCoord, vec2(0.5));
+          strength = 1.0 - strength;
+          strength = pow(strength, 10.0);
+        
+          // // Final color
+          // // vec3 color = mix(vec3(0.0), vColor, strength);
+          gl_FragColor = vec4(vec3(strength), 1.0);
+        }
+      `,
       uniforms: {
         uSize: {
           value: 2500 * this.experience.renderer.instance.getPixelRatio(),
