@@ -16,13 +16,4 @@ const OverlayWebGL = styled.div`
   z-index: 2;
 `;
 
-const Left = styled(OverlayWebGL)`
-  padding-left: 20px;
-`;
-
-const Right = styled(OverlayWebGL)`
-  justify-content: flex-end;
-  padding-right: 20px;
-`;
-
-export { Container, Left, Right };
+export { Container, OverlayWebGL };
