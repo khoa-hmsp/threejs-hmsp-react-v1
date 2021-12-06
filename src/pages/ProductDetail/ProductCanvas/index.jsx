@@ -12,7 +12,7 @@ const ProductCanvasContainer = styled.canvas`
 
 export default function ProductCanvas() {
   const canvasElement = useRef(null);
-  const [experience, setExperience] = useState(null);
+  const [, setExperience] = useState(null);
 
   useEffect(() => {
     setExperience(new Experience(canvasElement.current));

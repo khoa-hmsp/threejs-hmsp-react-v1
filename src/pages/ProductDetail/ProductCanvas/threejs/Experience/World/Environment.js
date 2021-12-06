@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import Experience from '../Experience.js';
 import Dust from './Geometries/Dust/index.js';
-import { findMaxDistance } from '../Constants/modelAttributes';
 
 export default class Environment {
   constructor() {
@@ -61,7 +60,7 @@ export default class Environment {
   setCoordinatesHelpers() {
     const gridHelper = new THREE.GridHelper(500, 100);
     gridHelper.position.y -= 0.5;
-    const axesHelper = new THREE.AxesHelper(200);
+    // const axesHelper = new THREE.AxesHelper(200);
     this.experience.scene.add(gridHelper);
   }
 
