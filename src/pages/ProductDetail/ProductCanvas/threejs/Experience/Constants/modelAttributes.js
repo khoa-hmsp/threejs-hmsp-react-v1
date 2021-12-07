@@ -33,10 +33,10 @@ export const MODELS = {
     },
   },
   heliBall: {
-    position: new THREE.Vector3(240, 1, -130),
+    position: new THREE.Vector3(60, 1, -50),
     camera: {
-      position: new THREE.Vector3(242.5, 1.25, -132.5),
-      lookAt: new THREE.Vector3(240, 1, -125),
+      position: new THREE.Vector3(62.5, 1.25, -52.5),
+      lookAt: new THREE.Vector3(60, 1, -45),
     },
     scale: 10,
     rotation: 0,
