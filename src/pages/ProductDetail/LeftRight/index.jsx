@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../../components/Button';
 import { Container } from '../../../components/containers';
 import Left from '../../../components/containers/Left';
@@ -14,6 +14,9 @@ import { TIME_TO_SWITCH_MODEL } from '../ProductCanvas/threejs/Experience/Consta
 
 export default function LeftRight() {
   const dispatch = useDispatch();
+  const isSwitchingModel = useSelector(
+    (state) => state.experience.isSwitchModel
+  );
 
   const handleSwitchNextModel = () => {
     dispatch(switchNextModelAction());
@@ -32,8 +35,10 @@ export default function LeftRight() {
   return (
     <Container>
       <Left>
-        <Button onClick={handleSwitchPreviousModel}>Previous</Button>
-        <Text>
+        <Button visible={!isSwitchingModel} onClick={handleSwitchPreviousModel}>
+          Previous
+        </Button>
+        <Text visible={!isSwitchingModel}>
           {' '}
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
@@ -47,7 +52,7 @@ export default function LeftRight() {
         </Text>
       </Left>
       <Right>
-        <Text>
+        <Text visible={!isSwitchingModel}>
           {' '}
           It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
@@ -59,7 +64,9 @@ export default function LeftRight() {
           infancy. Various versions have evolved over the years, sometimes by
           accident, sometimes on purpose (injected humour and the like).{' '}
         </Text>
-        <Button onClick={handleSwitchNextModel}>Next</Button>
+        <Button visible={!isSwitchingModel} onClick={handleSwitchNextModel}>
+          Next
+        </Button>
       </Right>
     </Container>
   );

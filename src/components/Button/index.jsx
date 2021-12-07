@@ -8,6 +8,8 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
+
+  display: ${(props) => (props.visible ? 'inline-block' : 'none')};
 `;
 
 export default Button;

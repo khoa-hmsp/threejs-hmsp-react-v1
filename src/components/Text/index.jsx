@@ -14,7 +14,7 @@ const Text = styled.div`
 
   /* opacity: 0; */
 
-  display: flex;
+  display: ${(props) => (props.visible ? 'flex' : 'none')};
   flex-direction: column;
 
   overflow-y: scroll;
