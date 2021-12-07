@@ -6,6 +6,8 @@ const Center = styled(OverlayWebGL)`
   bottom: 0;
   left: 50%;
   margin: 5px 0 5px 0;
+
+  transform: translateX(-50%);
 `;
 
 export default Center;

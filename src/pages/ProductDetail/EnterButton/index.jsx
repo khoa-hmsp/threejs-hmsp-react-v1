@@ -8,11 +8,16 @@ export default function EnterButton() {
   const isSwitchingModel = useSelector(
     (state) => state.experience.isSwitchModel
   );
+  const isLoadingExperience = useSelector(
+    (state) => state.experience.isLoading
+  );
 
   return (
     <Container>
       <Center>
-        <Button visible={!isSwitchingModel}>Enter/Exit</Button>
+        <Button visible={!isSwitchingModel && !isLoadingExperience}>
+          Enter/Exit
+        </Button>
       </Center>
     </Container>
   );

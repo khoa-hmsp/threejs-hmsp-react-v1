@@ -21,6 +21,9 @@ export default function LeftRight() {
   const isSwitchingModel = useSelector(
     (state) => state.experience.isSwitchModel
   );
+  const isLoadingExperience = useSelector(
+    (state) => state.experience.isLoading
+  );
   const currentModelName = useSelector(
     (state) => state.experience.currentModelName
   );
@@ -52,12 +55,17 @@ export default function LeftRight() {
   return (
     <Container>
       <Left>
-        <Button visible={!isSwitchingModel} onClick={handleSwitchPreviousModel}>
+        <Button
+          visible={!isSwitchingModel && !isLoadingExperience}
+          onClick={handleSwitchPreviousModel}
+        >
           Previous
         </Button>
         <Text
           visible={
-            !isSwitchingModel && isTextContentVisible(textPositions.left)
+            !isSwitchingModel &&
+            isTextContentVisible(textPositions.left) &&
+            !isLoadingExperience
           }
         >
           {renderTextContentVisible(textPositions.left)}
@@ -66,12 +74,17 @@ export default function LeftRight() {
       <Right>
         <Text
           visible={
-            !isSwitchingModel && isTextContentVisible(textPositions.right)
+            !isSwitchingModel &&
+            isTextContentVisible(textPositions.right) &&
+            !isLoadingExperience
           }
         >
           {renderTextContentVisible(textPositions.right)}
         </Text>
-        <Button visible={!isSwitchingModel} onClick={handleSwitchNextModel}>
+        <Button
+          visible={!isSwitchingModel && !isLoadingExperience}
+          onClick={handleSwitchNextModel}
+        >
           Next
         </Button>
       </Right>
