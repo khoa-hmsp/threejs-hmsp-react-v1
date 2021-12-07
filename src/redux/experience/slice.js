@@ -14,5 +14,6 @@ export const {
   switchPreviousModel,
   finishSwitchingModel,
   finishLoadingExperience,
+  toggleEnterModel,
 } = experienceSlice.actions;
 export default experienceSlice.reducer;
