@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Button from '../../../components/Button';
 import { Container } from '../../../components/containers';
 import Left from '../../../components/containers/Left';
 import Right from '../../../components/containers/Right';
 import Text from '../../../components/Text';
+import { switchNextModel as switchNextModelAction } from '../../../redux/experience/slice';
 
 export default function LeftRight() {
+  const dispatch = useDispatch();
+
+  const handleSwitchNextModel = () => {
+    dispatch(switchNextModelAction());
+  };
+
   return (
     <Container>
       <Left>
@@ -36,7 +44,7 @@ export default function LeftRight() {
           infancy. Various versions have evolved over the years, sometimes by
           accident, sometimes on purpose (injected humour and the like).{' '}
         </Text>
-        <Button>Next</Button>
+        <Button onClick={handleSwitchNextModel}>Next</Button>
       </Right>
     </Container>
   );

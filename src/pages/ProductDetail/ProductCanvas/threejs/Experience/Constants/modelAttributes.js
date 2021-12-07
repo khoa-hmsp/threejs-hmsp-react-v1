@@ -50,5 +50,5 @@ export const MODELS = {
 export default MODELS;
 
 export const modelNames = Object.keys(MODELS);
-export const TIME_TO_SWITCH_MODEL = 1.5;
+export const TIME_TO_SWITCH_MODEL = 3;
 export const TIME_TO_ENTER_MODEL = 0.5;
