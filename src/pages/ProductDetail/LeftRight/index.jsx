@@ -8,17 +8,25 @@ import Text from '../../../components/Text';
 import {
   switchNextModel as switchNextModelAction,
   switchPreviousModel as switchPreviousModelAction,
+  finishSwitchingModel as finishSwitchingModelAction,
 } from '../../../redux/experience/slice';
+import { TIME_TO_SWITCH_MODEL } from '../ProductCanvas/threejs/Experience/Constants/modelAttributes';
 
 export default function LeftRight() {
   const dispatch = useDispatch();
 
   const handleSwitchNextModel = () => {
     dispatch(switchNextModelAction());
+    setTimeout(() => {
+      dispatch(finishSwitchingModelAction());
+    }, TIME_TO_SWITCH_MODEL * 1000);
   };
 
   const handleSwitchPreviousModel = () => {
     dispatch(switchPreviousModelAction());
+    setTimeout(() => {
+      dispatch(finishSwitchingModelAction());
+    }, TIME_TO_SWITCH_MODEL * 1000);
   };
 
   return (

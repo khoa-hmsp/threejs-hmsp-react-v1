@@ -9,5 +9,6 @@ export const experienceSlice = createSlice({
   reducers,
 });
 
-export const { switchNextModel, switchPreviousModel } = experienceSlice.actions;
+export const { switchNextModel, switchPreviousModel, finishSwitchingModel } =
+  experienceSlice.actions;
 export default experienceSlice.reducer;
