@@ -5,7 +5,7 @@ export const textPositions = {
   left: 'left',
 };
 
-const MODELS = {
+export const MODELS = {
   shiba: {
     position: new THREE.Vector3(-62.5, 2.5, 55),
     camera: {
@@ -50,3 +50,5 @@ const MODELS = {
 export default MODELS;
 
 export const modelNames = Object.keys(MODELS);
+export const TIME_TO_SWITCH_MODEL = 1.5;
+export const TIME_TO_ENTER_MODEL = 0.5;
