@@ -5,7 +5,10 @@ import { Container } from '../../../components/containers';
 import Left from '../../../components/containers/Left';
 import Right from '../../../components/containers/Right';
 import Text from '../../../components/Text';
-import { switchNextModel as switchNextModelAction } from '../../../redux/experience/slice';
+import {
+  switchNextModel as switchNextModelAction,
+  switchPreviousModel as switchPreviousModelAction,
+} from '../../../redux/experience/slice';
 
 export default function LeftRight() {
   const dispatch = useDispatch();
@@ -14,10 +17,14 @@ export default function LeftRight() {
     dispatch(switchNextModelAction());
   };
 
+  const handleSwitchPreviousModel = () => {
+    dispatch(switchPreviousModelAction());
+  };
+
   return (
     <Container>
       <Left>
-        <Button>Previous</Button>
+        <Button onClick={handleSwitchPreviousModel}>Previous</Button>
         <Text>
           {' '}
           It is a long established fact that a reader will be distracted by the
