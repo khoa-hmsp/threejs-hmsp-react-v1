@@ -43,6 +43,12 @@ export default function LeftRight() {
     return MODELS[currentModelName].text.position === position;
   };
 
+  const renderTextContentVisible = (position) => {
+    return MODELS[currentModelName].text.position === position
+      ? MODELS[currentModelName].text.content
+      : '';
+  };
+
   return (
     <Container>
       <Left>
@@ -54,7 +60,7 @@ export default function LeftRight() {
             !isSwitchingModel && isTextContentVisible(textPositions.left)
           }
         >
-          {MODELS[currentModelName].text.content}
+          {renderTextContentVisible(textPositions.left)}
         </Text>
       </Left>
       <Right>
@@ -63,7 +69,7 @@ export default function LeftRight() {
             !isSwitchingModel && isTextContentVisible(textPositions.right)
           }
         >
-          {MODELS[currentModelName].text.content}
+          {renderTextContentVisible(textPositions.right)}
         </Text>
         <Button visible={!isSwitchingModel} onClick={handleSwitchNextModel}>
           Next
