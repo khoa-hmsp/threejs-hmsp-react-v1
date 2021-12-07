@@ -12,9 +12,9 @@ const Text = styled.div`
 
   transition: all ease 0.5s;
 
-  /* opacity: 0; */
+  opacity: ${(props) => (props.visible ? 1 : 0)};
 
-  display: ${(props) => (props.visible ? 'flex' : 'none')};
+  display: flex;
   flex-direction: column;
 
   overflow-y: scroll;
