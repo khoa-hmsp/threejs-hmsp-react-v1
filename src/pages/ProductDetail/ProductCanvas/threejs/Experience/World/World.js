@@ -18,9 +18,9 @@ export default class World {
       // Setup
       this.lineFloor = new LineFloor(500, 500);
       this.shiba = new Shiba();
-      this.busterDrone = new BusterDrone();
+      this.droneModel = new BusterDrone();
       this.heliBall = new HeliBall();
-      this.models = [this.shiba, this.busterDrone, this.heliBall];
+      this.models = [this.shiba, this.droneModel, this.heliBall];
 
       // Startup
       this.currentModel = this.models[0];
@@ -60,6 +60,10 @@ export default class World {
   }
 
   scaleModel(strModelName, scaleFactor) {
+    console.log(
+      '🚀 ~ file: World.js ~ line 63 ~ World ~ scaleModel ~ strModelName',
+      strModelName
+    );
     this[strModelName].scaleByFactor(scaleFactor);
   }
 }

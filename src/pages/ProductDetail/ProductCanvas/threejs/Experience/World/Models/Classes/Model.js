@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import Rotation, { ROTATION_TYPES } from '../../../Utils/Rotation';
 import Time from '../../../Utils/Time';
 import MODELS from '../../../Constants/modelAttributes';
@@ -29,5 +30,8 @@ export default class Model {
       me.scale * scaleFactor.y,
       me.scale * scaleFactor.z
     );
+    //Bouding Box
+    const box = new THREE.Box3().setFromObject(this.model);
+    this.model.position.y += -0.5 - box.min.y;
   }
 }
