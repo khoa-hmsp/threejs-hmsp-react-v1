@@ -12,7 +12,14 @@ const Container = styled.div`
 
 const OverlayWebGL = styled.div`
   display: flex;
-  align-items: center;
+  align-items: ${(props) => {
+    if (!props.alignItems || typeof props.alignItems !== 'string') {
+      return 'center';
+    } else {
+      return props.alignItems;
+    }
+  }};
+
   z-index: 2;
 `;
 
