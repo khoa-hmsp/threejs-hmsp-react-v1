@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import Left from './Left';
+import Right from './Right';
+import Center from './Center';
 
 const Container = styled.div`
   position: absolute;
@@ -10,17 +13,4 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const OverlayWebGL = styled.div`
-  display: flex;
-  align-items: ${(props) => {
-    if (!props.alignItems || typeof props.alignItems !== 'string') {
-      return 'center';
-    } else {
-      return props.alignItems;
-    }
-  }};
-
-  z-index: 2;
-`;
-
-export { Container, OverlayWebGL };
+export { Container, Left, Right, Center };
