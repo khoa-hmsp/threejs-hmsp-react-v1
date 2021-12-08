@@ -57,13 +57,14 @@ export default class World {
 
   loseFocusCurrentModel() {
     this.currentModel.startSpinning();
+    this.currentModel.scaleByFactor({
+      x: 1,
+      y: 1,
+      z: 1,
+    });
   }
 
   scaleModel(strModelName, scaleFactor) {
-    console.log(
-      '🚀 ~ file: World.js ~ line 63 ~ World ~ scaleModel ~ strModelName',
-      strModelName
-    );
     this[strModelName].scaleByFactor(scaleFactor);
   }
 }
