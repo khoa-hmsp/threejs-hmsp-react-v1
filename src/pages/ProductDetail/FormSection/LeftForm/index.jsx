@@ -1,18 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Left } from '../../../../components/containers';
 import { Title } from '../../../../components/Typography';
 import { useForm } from 'react-hook-form';
+import Experience from '../../ProductCanvas/threejs/Experience/Experience';
+import { useSelector } from 'react-redux';
 
 export default function LeftForm() {
+  const [experience, setExperience] = useState(null);
+
+  const experienceRedux = useSelector((state) => state.experience);
+
+  //#region useForm
   const { watch, register } = useForm();
   const watchSize = watch('size', '1x1x1');
+  //#endregion
+
+  //#region useEffect(experience, watchSize)
+  useEffect(() => {
+    setExperience(new Experience());
+  }, []);
 
   useEffect(() => {
-    console.log(
-      '🚀 ~ file: index.jsx ~ line 13 ~ LeftForm ~ watchSize',
-      watchSize
-    );
-  }, [watchSize]);
+    if (experience && experience instanceof Experience) {
+      experience.scaleModel(
+        experienceRedux.currentModelName,
+        parseSizeToScaleFactor(watchSize)
+      );
+    }
+  }, [watchSize, experience, experienceRedux.currentModelName]);
+  //#endregion
+
+  const parseSizeToScaleFactor = (strSize = '1x1x1') => {
+    const arr = strSize.split('x').map((str) => parseInt(str));
+    const scaleFactor = {
+      x: arr[0],
+      y: arr[1],
+      z: arr[2],
+    };
+    return scaleFactor;
+  };
 
   return (
     <form>

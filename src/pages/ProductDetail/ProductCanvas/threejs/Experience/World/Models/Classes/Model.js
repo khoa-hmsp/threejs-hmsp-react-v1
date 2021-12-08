@@ -21,4 +21,13 @@ export default class Model {
     if (this.rotation) this.rotation.stop();
     this.model.rotation.set(0, me.rotation, 0);
   }
+
+  scaleByFactor(scaleFactor) {
+    const me = MODELS[this.name];
+    this.model.scale.set(
+      me.scale * scaleFactor.x,
+      me.scale * scaleFactor.y,
+      me.scale * scaleFactor.z
+    );
+  }
 }

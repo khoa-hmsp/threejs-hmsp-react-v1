@@ -58,4 +58,8 @@ export default class World {
   loseFocusCurrentModel() {
     this.currentModel.startSpinning();
   }
+
+  scaleModel(strModelName, scaleFactor) {
+    this[strModelName].scaleByFactor(scaleFactor);
+  }
 }

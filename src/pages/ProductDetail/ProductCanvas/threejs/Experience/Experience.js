@@ -82,4 +82,8 @@ export default class Experience {
     this.camera.moveToModel(strModelName, jumpDuration);
     this.world.updateCurrentModel(strModelName);
   }
+
+  scaleModel(strModelName, scaleFactor) {
+    this.world.scaleModel(strModelName, scaleFactor);
+  }
 }
