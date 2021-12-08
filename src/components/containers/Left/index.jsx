@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { OverlayWebGL } from '..';
+import OverlayWebGL from '../OverlayWebGL';
 
 const Left = styled(OverlayWebGL)`
   padding-left: 20px;

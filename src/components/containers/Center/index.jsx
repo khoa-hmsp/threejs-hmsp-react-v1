@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { OverlayWebGL } from '..';
+import OverlayWebGL from '../OverlayWebGL';
 
 const Center = styled(OverlayWebGL)`
   position: absolute;
