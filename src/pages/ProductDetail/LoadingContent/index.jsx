@@ -34,6 +34,12 @@ export default function LoadingContent() {
         }
       });
     }
+
+    return () => {
+      if (experience instanceof Experience) {
+        experience.resources.off('progress');
+      }
+    };
   });
 
   return (
