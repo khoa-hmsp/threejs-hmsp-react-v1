@@ -48,6 +48,25 @@ export default class Resources extends EventEmitter {
     }
   }
 
+  loadMore(sources) {
+    this.toLoad += sources.length;
+    for (const source of sources) {
+      if (source.type === 'gltfModel') {
+        this.loaders.gltfLoader.load(source.path, (file) => {
+          this.sourceLoaded(source, file);
+        });
+      } else if (source.type === 'texture') {
+        this.loaders.textureLoader.load(source.path, (file) => {
+          this.sourceLoaded(source, file);
+        });
+      } else if (source.type === 'cubeTexture') {
+        this.loaders.cubeTextureLoader.load(source.path, (file) => {
+          this.sourceLoaded(source, file);
+        });
+      }
+    }
+  }
+
   sourceLoaded(source, file) {
     this.items[source.name] = file;
 
