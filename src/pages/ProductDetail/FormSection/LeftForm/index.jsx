@@ -55,30 +55,12 @@ export default function LeftForm() {
         sources[0].path = e.target.result;
         experience.resources.loadMore(sources);
         experience.resources.on('ready', () => {
-          console.log('Ready');
-          console.log(experience.resources.items);
-
-          //#region test section
-          const loadedMap = experience.resources.items[name];
-          console.log(
-            '🚀 ~ file: index.jsx ~ line 58 ~ experience.resources.on ~ loadedMap',
-            loadedMap
-          );
-
-          // experience.world.fox.model.traverse((o) => {
-          //   if (
-          //     o instanceof THREE.Mesh &&
-          //     o.material instanceof THREE.MeshStandardMaterial
-          //   ) {
-          //     o.material.map = loadedMap;
-          //   }
-          // });
-          //#endregion
+          experience.applyTexture(experienceRedux.currentModelName, name);
         });
       };
       reader.readAsDataURL(file);
     }
-  }, [experience, watchImage]);
+  }, [experience, watchImage, experienceRedux.currentModelName]);
   //#endregion
 
   const parseSizeToScaleFactor = (strSize = '1x1x1') => {

@@ -86,4 +86,8 @@ export default class Experience {
   scaleModel(strModelName, scaleFactor) {
     this.world.scaleModel(strModelName, scaleFactor);
   }
+
+  applyTexture(strModelName, strTextureName) {
+    this.world.applyTexture(strModelName, strTextureName);
+  }
 }

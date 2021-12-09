@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import Experience from '../Experience';
 import Environment from './Environment';
 import Overlay from './Geometries/Overlay';
@@ -71,5 +72,19 @@ export default class World {
 
   scaleModel(strModelName, scaleFactor) {
     this[strModelName].scaleByFactor(scaleFactor);
+  }
+
+  applyTexture(strModelName, strTextureName) {
+    const object = this[strModelName];
+    const texture = this.resources.items[strTextureName];
+
+    object.model.traverse((o) => {
+      if (
+        o instanceof THREE.Mesh &&
+        o.material instanceof THREE.MeshStandardMaterial
+      ) {
+        o.material.map = texture;
+      }
+    });
   }
 }
