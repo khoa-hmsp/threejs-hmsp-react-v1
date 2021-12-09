@@ -9,7 +9,13 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 20px;
 
-  display: ${(props) => (props.visible ? 'inline-block' : 'none')};
+  display: ${(props) => {
+    if (typeof props.visible === 'undefined') {
+      return 'inline-block';
+    }
+
+    return props.visible ? 'inline-block' : 'none';
+  }};
 `;
 
 export default Button;
