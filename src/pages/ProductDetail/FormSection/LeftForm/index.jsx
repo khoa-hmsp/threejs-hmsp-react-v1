@@ -4,6 +4,7 @@ import { Title } from '../../../../components/Typography';
 import { useForm } from 'react-hook-form';
 import Experience from '../../ProductCanvas/threejs/Experience/Experience';
 import { useSelector } from 'react-redux';
+import { UploadImage } from '../../../../components/Upload';
 
 export default function LeftForm() {
   const [experience, setExperience] = useState(null);
@@ -11,7 +12,7 @@ export default function LeftForm() {
   const experienceRedux = useSelector((state) => state.experience);
 
   //#region useForm
-  const { watch, register } = useForm();
+  const { watch, register, control } = useForm();
   const watchSize = watch('size', '1x1x1');
   //#endregion
 
@@ -57,6 +58,20 @@ export default function LeftForm() {
           <option value="1x2x3">1x2x3</option>
           <option value="2x1x3">2x1x3</option>
         </select>
+        {/* Upload image */}
+        <Title variant="h3" color="white">
+          Upload texture
+        </Title>
+        <label htmlFor="upload-image-input">
+          <UploadImage control={control} outerWidth="100px" innerWidth="75px" />
+        </label>
+        <input
+          id="upload-image-input"
+          type="file"
+          accept="image/*"
+          {...register('image')}
+          style={{ display: 'none' }}
+        />
       </Left>
     </form>
   );
