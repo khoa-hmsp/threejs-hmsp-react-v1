@@ -14,9 +14,10 @@ export default function LeftForm() {
   //#region useForm
   const { watch, register, control } = useForm();
   const watchSize = watch('size', '1x1x1');
+  const watchImage = watch('image');
   //#endregion
 
-  //#region useEffect(experience, watchSize)
+  //#region useEffect(experience, watchSize, watchImage)
   useEffect(() => {
     setExperience(new Experience());
   }, []);
@@ -29,6 +30,55 @@ export default function LeftForm() {
       );
     }
   }, [watchSize, experience, experienceRedux.currentModelName]);
+
+  useEffect(() => {
+    if (
+      experience &&
+      experience instanceof Experience &&
+      watchImage instanceof FileList &&
+      watchImage.length > 0
+    ) {
+      const reader = new FileReader();
+
+      const file = watchImage[0];
+      const name = 'image' + Date.now();
+
+      const sources = [
+        {
+          name,
+          type: 'texture',
+          path: '',
+        },
+      ];
+
+      reader.onload = function (e) {
+        sources[0].path = e.target.result;
+        experience.resources.loadMore(sources);
+        experience.resources.on('ready', () => {
+          console.log('Ready');
+          console.log(experience.resources.items);
+
+          //#region test section
+          const loadedMap = experience.resources.items[name];
+          console.log(
+            '🚀 ~ file: index.jsx ~ line 58 ~ experience.resources.on ~ loadedMap',
+            loadedMap
+          );
+
+          // experience.world.fox.model.traverse((o) => {
+          //   if (
+          //     o instanceof THREE.Mesh &&
+          //     o.material instanceof THREE.MeshStandardMaterial
+          //   ) {
+          //     o.material.map = loadedMap;
+          //   }
+          // });
+          //#endregion
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  }, [experience, watchImage]);
   //#endregion
 
   const parseSizeToScaleFactor = (strSize = '1x1x1') => {
