@@ -8,6 +8,8 @@ import Shiba from './Models/Shiba';
 
 export default class World {
   constructor() {
+    this.doneInitialization = false;
+
     this.experience = new Experience();
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
@@ -15,20 +17,23 @@ export default class World {
 
     // Wait for resources
     this.resources.on('ready', () => {
-      // Setup
-      this.lineFloor = new LineFloor(500, 500);
-      this.shiba = new Shiba();
-      this.droneModel = new BusterDrone();
-      this.heliBall = new HeliBall();
-      this.models = [this.shiba, this.droneModel, this.heliBall];
+      if (!this.doneInitialization) {
+        // Setup
+        this.lineFloor = new LineFloor(500, 500);
+        this.shiba = new Shiba();
+        this.droneModel = new BusterDrone();
+        this.heliBall = new HeliBall();
+        this.models = [this.shiba, this.droneModel, this.heliBall];
 
-      // Startup
-      this.currentModel = this.models[0];
-      this.currentModel.startSpinning();
+        // Startup
+        this.currentModel = this.models[0];
+        this.currentModel.startSpinning();
 
-      this.environment = new Environment();
-      // this.viewPointer = new ViewPointer();
-      this.overlay.fadeOut();
+        this.environment = new Environment();
+        // this.viewPointer = new ViewPointer();
+        this.overlay.fadeOut();
+        this.doneInitialization = true;
+      }
     });
   }
 
