@@ -60,6 +60,12 @@ export default function LeftForm() {
       };
       reader.readAsDataURL(file);
     }
+
+    return () => {
+      if (experience && experience instanceof Experience) {
+        experience.resources.off('ready');
+      }
+    };
   }, [experience, watchImage, experienceRedux.currentModelName]);
   //#endregion
 
