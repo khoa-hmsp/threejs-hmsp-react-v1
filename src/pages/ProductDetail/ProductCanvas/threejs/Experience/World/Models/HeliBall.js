@@ -1,39 +1,11 @@
 import * as THREE from 'three';
-import Experience from '../../Experience.js';
-import POSITIONS from '../../Constants/modelAttributes.js';
 import Model from './Classes/Model';
 
 export default class HeliBall extends Model {
   constructor() {
     super('heliBall');
-    this.experience = new Experience();
-    this.scene = this.experience.scene;
-    this.resources = this.experience.resources;
-    // Setup
-    this.resource = this.resources.items.heliBall;
-    this.time = this.experience.time;
 
-    this.setModel();
     this.setAnimation();
-    // this.startSpinning();
-  }
-
-  setModel() {
-    this.model = this.resource.scene;
-    this.model.position.copy(POSITIONS.heliBall.position);
-    this.model.rotation.y += POSITIONS.heliBall.rotation;
-    this.model.scale.set(
-      POSITIONS.heliBall.scale,
-      POSITIONS.heliBall.scale,
-      POSITIONS.heliBall.scale
-    );
-    this.scene.add(this.model);
-
-    this.model.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        child.castShadow = true;
-      }
-    });
   }
 
   setAnimation() {
