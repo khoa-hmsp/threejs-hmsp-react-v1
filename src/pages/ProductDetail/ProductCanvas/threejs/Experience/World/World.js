@@ -68,6 +68,7 @@ export default class World {
       y: 1,
       z: 1,
     });
+    this.currentModel.restoreMaterial();
   }
 
   scaleModel(strModelName, scaleFactor) {

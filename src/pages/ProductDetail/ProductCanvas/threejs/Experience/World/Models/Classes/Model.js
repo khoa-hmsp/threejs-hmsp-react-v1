@@ -33,7 +33,7 @@ export default class Model {
     this.model.traverse((child) => {
       if (child instanceof THREE.Mesh) {
         child.castShadow = true;
-        this.originalMaterial.push(child.material);
+        this.originalMaterial.push(child.material.clone());
       }
     });
   }
@@ -68,7 +68,7 @@ export default class Model {
     let idx = 0;
     this.model.traverse((child) => {
       if (child instanceof THREE.Mesh) {
-        child.material = this.originalMaterial[idx];
+        child.material = this.originalMaterial[idx].clone();
         idx++;
       }
     });
