@@ -6,6 +6,7 @@ import LineFloor from './Geometries/LineFloor';
 import BusterDrone from './Models/BusterDrone';
 import HeliBall from './Models/HeliBall';
 import Shiba from './Models/Shiba';
+import OpenBox from './Models/OpenBox';
 
 export default class World {
   constructor() {
@@ -21,10 +22,16 @@ export default class World {
       if (!this.doneInitialization) {
         // Setup
         this.lineFloor = new LineFloor(500, 500);
-        this.shiba = new Shiba();
+        // this.shiba = new Shiba();
         this.droneModel = new BusterDrone();
         this.heliBall = new HeliBall();
-        this.models = [this.shiba, this.droneModel, this.heliBall];
+        this.openBox = new OpenBox();
+        this.models = [
+          // this.shiba,
+          this.openBox,
+          this.droneModel,
+          this.heliBall,
+        ];
 
         // Startup
         this.currentModel = this.models[0];
@@ -84,6 +91,10 @@ export default class World {
         o instanceof THREE.Mesh &&
         o.material instanceof THREE.MeshStandardMaterial
       ) {
+        console.log(
+          '🚀 ~ file: World.js ~ line 93 ~ World ~ object.model.traverse ~ o',
+          o
+        );
         o.material.map = texture;
       }
     });

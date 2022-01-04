@@ -14,6 +14,11 @@ const sources = [
     type: 'gltfModel',
     path: `/models/heli-ball/scene.gltf`,
   },
+  {
+    name: 'openBox',
+    type: 'gltfModel',
+    path: `/models/open-box/scene.gltf`,
+  },
 ];
 
 // export default [
