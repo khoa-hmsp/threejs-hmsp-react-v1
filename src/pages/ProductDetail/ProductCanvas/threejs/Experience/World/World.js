@@ -93,6 +93,7 @@ export default class World {
       ) {
         if (o.name === strMeshName || typeof strMeshName === 'undefined') {
           o.material.map = texture;
+          object.maintainMeshAspectRatio(o);
         }
       }
     });
