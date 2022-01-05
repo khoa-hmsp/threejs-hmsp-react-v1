@@ -8,6 +8,7 @@ export default class Model {
   constructor(modelName) {
     this.time = new Time();
     this.name = modelName;
+    this.scaleFactors = new THREE.Vector3(1, 1, 1);
 
     this.experience = new Experience();
     this.scene = this.experience.scene;
@@ -62,6 +63,14 @@ export default class Model {
     //Bouding Box
     const box = new THREE.Box3().setFromObject(this.model);
     this.model.position.y += -0.5 - box.min.y;
+    // Update scale factor
+    this.scaleFactors.set(scaleFactor.x, scaleFactor.y, scaleFactor.z);
+
+    // test
+    const meshList = this.getMeshList();
+    meshList.forEach((mesh) => {
+      this.maintainMeshAspectRatio(mesh);
+    });
   }
 
   restoreMaterial() {
@@ -87,5 +96,30 @@ export default class Model {
     });
 
     return meshList;
+  }
+
+  maintainMeshAspectRatio(mesh) {
+    const meshScale = { x: 1, y: 1 };
+
+    if (
+      mesh.name.toUpperCase() === 'LEFT' ||
+      mesh.name.toUpperCase() === 'RIGHT'
+    ) {
+      meshScale.x = this.scaleFactors.y;
+      meshScale.y = this.scaleFactors.x;
+    } else if (
+      mesh.name.toUpperCase() === 'FRONT' ||
+      mesh.name.toUpperCase() === 'BACK'
+    ) {
+      meshScale.x = this.scaleFactors.y;
+      meshScale.y = this.scaleFactors.z;
+    } else if (
+      mesh.name.toUpperCase() === 'TOP' ||
+      mesh.name.toUpperCase() === 'BOTTOM'
+    ) {
+      meshScale.x = this.scaleFactors.x;
+      meshScale.y = this.scaleFactors.z;
+    }
+    mesh.material.map.repeat.set(1 / meshScale.x, 1 / meshScale.y);
   }
 }
