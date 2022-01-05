@@ -8,6 +8,7 @@ import { UploadImage } from '../../../../components/Upload';
 
 export default function LeftForm() {
   const [experience, setExperience] = useState(null);
+  const [meshList, setMeshList] = useState([]);
 
   const experienceRedux = useSelector((state) => state.experience);
 
@@ -17,7 +18,7 @@ export default function LeftForm() {
   const watchImage = watch('image');
   //#endregion
 
-  //#region useEffect(experience, watchSize, watchImage)
+  //#region useEffect(experience, watchSize, watchImage, meshList)
   useEffect(() => {
     setExperience(new Experience());
   }, []);
@@ -67,6 +68,12 @@ export default function LeftForm() {
       }
     };
   }, [experience, watchImage, experienceRedux.currentModelName]);
+
+  useEffect(() => {
+    if (experience && experience instanceof Experience) {
+      setMeshList(experience.getCurrentModelMeshList());
+    }
+  }, [experience]);
   //#endregion
 
   const parseSizeToScaleFactor = (strSize = '1x1x1') => {
@@ -100,6 +107,11 @@ export default function LeftForm() {
         <Title variant="h3" color="white">
           Upload texture
         </Title>
+        <select id="mesh-name-select" {...register('meshName')}>
+          {meshList.map((mesh) => (
+            <option key={mesh?.uuid}>{mesh?.name}</option>
+          ))}
+        </select>
         <label htmlFor="upload-image-input">
           <UploadImage control={control} outerWidth="100px" innerWidth="75px" />
         </label>

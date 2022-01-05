@@ -99,4 +99,8 @@ export default class World {
       }
     });
   }
+
+  getCurrentModelMeshList() {
+    return this.currentModel.getMeshList();
+  }
 }

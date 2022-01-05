@@ -73,4 +73,19 @@ export default class Model {
       }
     });
   }
+
+  getMeshList() {
+    const meshList = [];
+
+    this.model.traverse((o) => {
+      if (
+        o instanceof THREE.Mesh &&
+        o.material instanceof THREE.MeshStandardMaterial
+      ) {
+        meshList.push(o);
+      }
+    });
+
+    return meshList;
+  }
 }

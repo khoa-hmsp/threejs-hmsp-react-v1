@@ -90,4 +90,8 @@ export default class Experience {
   applyTexture(strModelName, strTextureName) {
     this.world.applyTexture(strModelName, strTextureName);
   }
+
+  getCurrentModelMeshList() {
+    return this.world.getCurrentModelMeshList();
+  }
 }
