@@ -17,7 +17,7 @@ const sources = [
   {
     name: 'openBox',
     type: 'gltfModel',
-    path: `/models/open-box/scene.gltf`,
+    path: `/models/open-box/testing-box-1.gltf`,
   },
 ];
 
