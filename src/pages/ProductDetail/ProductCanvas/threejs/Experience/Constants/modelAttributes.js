@@ -25,7 +25,7 @@ export const MODELS = {
       position: new THREE.Vector3(-60, 3, 58),
       lookAt: new THREE.Vector3(-60, 1.75, 50),
     },
-    scale: 3,
+    scale: 5,
     rotation: Math.PI * 0.2,
     text: {
       position: textPositions.right,
