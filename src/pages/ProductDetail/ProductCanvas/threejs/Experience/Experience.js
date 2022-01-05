@@ -87,8 +87,8 @@ export default class Experience {
     this.world.scaleModel(strModelName, scaleFactor);
   }
 
-  applyTexture(strModelName, strTextureName) {
-    this.world.applyTexture(strModelName, strTextureName);
+  applyTexture(strModelName, strTextureName, strMeshName) {
+    this.world.applyTexture(strModelName, strTextureName, strMeshName);
   }
 
   getCurrentModelMeshList() {

@@ -13,7 +13,7 @@ export default function LeftForm() {
   const experienceRedux = useSelector((state) => state.experience);
 
   //#region useForm
-  const { watch, register, control } = useForm();
+  const { watch, register, control, getValues } = useForm();
   const watchSize = watch('size', '1x1x1');
   const watchImage = watch('image');
   //#endregion
@@ -55,8 +55,13 @@ export default function LeftForm() {
       reader.onload = function (e) {
         sources[0].path = e.target.result;
         experience.resources.loadMore(sources);
+        const selectedMeshName = getValues('meshName');
         experience.resources.on('ready', () => {
-          experience.applyTexture(experienceRedux.currentModelName, name);
+          experience.applyTexture(
+            experienceRedux.currentModelName,
+            name,
+            selectedMeshName
+          );
         });
       };
       reader.readAsDataURL(file);
@@ -67,7 +72,7 @@ export default function LeftForm() {
         experience.resources.off('ready');
       }
     };
-  }, [experience, watchImage, experienceRedux.currentModelName]);
+  }, [experience, watchImage, experienceRedux.currentModelName, getValues]);
 
   useEffect(() => {
     if (experience && experience instanceof Experience) {

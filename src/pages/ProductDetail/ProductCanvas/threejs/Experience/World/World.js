@@ -82,7 +82,7 @@ export default class World {
     this[strModelName].scaleByFactor(scaleFactor);
   }
 
-  applyTexture(strModelName, strTextureName) {
+  applyTexture(strModelName, strTextureName, strMeshName) {
     const object = this[strModelName];
     const texture = this.resources.items[strTextureName];
 
@@ -91,11 +91,9 @@ export default class World {
         o instanceof THREE.Mesh &&
         o.material instanceof THREE.MeshStandardMaterial
       ) {
-        console.log(
-          '🚀 ~ file: World.js ~ line 93 ~ World ~ object.model.traverse ~ o',
-          o
-        );
-        o.material.map = texture;
+        if (o.name === strMeshName || typeof strMeshName === 'undefined') {
+          o.material.map = texture;
+        }
       }
     });
   }
